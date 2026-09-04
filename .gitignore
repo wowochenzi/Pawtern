@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+/reference/
+.codex-shots/
+/profile-after*.png
+.env
+.env.*
+!.env.example
+*.log
+*.tar.gz
