@@ -160,7 +160,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
   background: transparent;
   color: #4a403a;
   caret-color: #4a403a;
-  font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-family: "HanyiSentyCrayon", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(16px, 5.128205vw, 20.615385px);
   line-height: 1.2;
   -webkit-text-fill-color: #4a403a;
@@ -168,7 +168,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
 }
 
 .auth-reference-input::placeholder {
-  font-family: "HanyiSentyCrayon", "PingFang SC", sans-serif;
+  font-family: inherit;
   font-size: inherit;
   color: #62605b;
   -webkit-text-fill-color: #62605b;
