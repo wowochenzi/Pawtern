@@ -160,16 +160,19 @@ button:disabled { cursor: default; filter: none; transform: none; }
   background: transparent;
   color: #4a403a;
   caret-color: #4a403a;
-  font-family: "HanyiSentyCrayon", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(16px, 5.128205vw, 20.615385px);
+  font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: clamp(16px, 4.102564vw, 16.492308px);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
   line-height: 1.2;
   -webkit-text-fill-color: #4a403a;
   appearance: none;
 }
 
 .auth-reference-input::placeholder {
-  font-family: inherit;
-  font-size: inherit;
+  font-family: "HanyiSentyCrayon", "PingFang SC", sans-serif;
+  font-size: clamp(16px, 5.128205vw, 20.615385px);
   color: #62605b;
   -webkit-text-fill-color: #62605b;
   opacity: 1;
