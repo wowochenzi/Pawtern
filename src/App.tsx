@@ -129,7 +129,8 @@ function Onboarding({ step }: { step: 1 | 2 | 3 }) {
 
 function OnboardingExperience({ initialStep }: { initialStep: 1 | 2 | 3 }) {
   const [step, setStep] = useState(initialStep - 1)
-  const pointerStart = useRef<{ x: number; y: number } | null>(null)
+  const pointerStart = useRef<{ x: number; y: number; id: number } | null>(null)
+  const suppressSwipeClick = useRef(false)
   const selectStep = (next: number) => {
     const bounded = Math.max(0, Math.min(2, next))
     if (bounded === step) return
@@ -140,15 +141,40 @@ function OnboardingExperience({ initialStep }: { initialStep: 1 | 2 | 3 }) {
   return <main
     className="reference-stage onboarding-experience"
     data-step={step + 1}
-    onPointerDown={event => { pointerStart.current = { x: event.clientX, y: event.clientY }; event.currentTarget.setPointerCapture(event.pointerId) }}
+    onPointerDown={event => {
+      if (!event.isPrimary || event.button !== 0) return
+      pointerStart.current = { x: event.clientX, y: event.clientY, id: event.pointerId }
+      suppressSwipeClick.current = false
+    }}
+    onPointerMove={event => {
+      const start = pointerStart.current
+      if (!start || start.id !== event.pointerId) return
+      const dx = event.clientX - start.x
+      const dy = event.clientY - start.y
+      // Capture only a horizontal drag; ordinary clicks must stay on the button.
+      if (Math.abs(dx) >= 42 && Math.abs(dx) > Math.abs(dy)) {
+        event.currentTarget.setPointerCapture(event.pointerId)
+        suppressSwipeClick.current = true
+      }
+    }}
     onPointerUp={event => {
       const start = pointerStart.current
+      if (!start || start.id !== event.pointerId) return
       pointerStart.current = null
-      if (!start) return
+      if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
       const dx = event.clientX - start.x
       const dy = event.clientY - start.y
       if (Math.abs(dx) < 42 || Math.abs(dx) < Math.abs(dy)) return
+      suppressSwipeClick.current = true
       selectStep(step + (dx < 0 ? 1 : -1))
+    }}
+    onPointerCancel={() => { pointerStart.current = null; suppressSwipeClick.current = false }}
+    onLostPointerCapture={() => { pointerStart.current = null }}
+    onClickCapture={event => {
+      if (!suppressSwipeClick.current || event.detail === 0) return
+      event.preventDefault()
+      event.stopPropagation()
+      suppressSwipeClick.current = false
     }}
   >
     <div className="onboarding-slide-track" style={{ transform: `translate3d(-${step * 100}%,0,0)` }}>
@@ -1008,6 +1034,28 @@ function ReferenceInput({ label, type = 'text', x, y, width, height }: {
   )
 }
 
+function AuthReferenceInput({ type, y, register = false }: {
+  type: 'email' | 'password'
+  y: number
+  register?: boolean
+}) {
+  const label = type === 'email' ? '邮箱地址' : '密码'
+  return (
+    <div className="auth-reference-field" style={hotspotStyle(76, y, 264, 49)}>
+      <input
+        className="auth-reference-input"
+        aria-label={label}
+        name={type}
+        type={type}
+        placeholder={label}
+        autoComplete={type === 'email' ? 'email' : register ? 'new-password' : 'current-password'}
+        autoCapitalize="none"
+        spellCheck={false}
+      />
+    </div>
+  )
+}
+
 function FixedReferenceNav({ route }: { route: Route }) {
   const homeActive = route === '/home'
   const shopActive = route.startsWith('/shop')
@@ -1049,15 +1097,15 @@ function RouteHotspots({ route }: { route: Route }) {
       return <Hotspot label="开启旅程" to="/login" x={31} y={699} width={324} height={62} />
     case '/login':
       return <>
-        <ReferenceInput label="邮箱地址" type="email" x={76} y={355} width={254} height={49} />
-        <ReferenceInput label="密码" type="password" x={76} y={423} width={254} height={49} />
+        <AuthReferenceInput type="email" y={355} />
+        <AuthReferenceInput type="password" y={423} />
         <Hotspot label="登录" to="/home" x={32} y={490} width={322} height={61} />
         <Hotspot label="去注册" to="/register" x={217} y={569} width={58} height={28} />
       </>
     case '/register':
       return <>
-        <ReferenceInput label="邮箱地址" type="email" x={76} y={355} width={254} height={49} />
-        <ReferenceInput label="密码" type="password" x={76} y={423} width={254} height={49} />
+        <AuthReferenceInput type="email" y={355} register />
+        <AuthReferenceInput type="password" y={423} register />
         <Hotspot label="注册" to="/home" x={32} y={594} width={322} height={62} />
         <Hotspot label="去登录" to="/login" x={217} y={677} width={58} height={28} />
       </>
@@ -1952,9 +2000,8 @@ function MarketProductGrid({ tab }: { tab: MarketTab }) {
 
 function MarketPanelBody({ tab, onSelectTab }: { tab: MarketTab; onSelectTab: (tab: MarketTab) => void }) {
   const snapshot = tab === 'recommend' ? './reference/shop.png' : './reference/shop-kits.png'
-  const snapshotHeight = tab === 'recommend' ? '252px' : tab === 'kits' ? '84px' : '0px'
   return <>
-    {tab === 'recommend' || tab === 'kits' ? <div className="market-content-snapshot" style={{ height: snapshotHeight }}>
+    {tab === 'recommend' || tab === 'kits' ? <div className={`market-content-snapshot market-content-snapshot-${tab}`}>
       <div className="reference-snapshot-full market-content-snapshot-image">
         <img className="reference-page-image" src={snapshot} alt="" draggable={false} />
         <MarketSnapshotHotspots tab={tab} onSelectTab={onSelectTab} />

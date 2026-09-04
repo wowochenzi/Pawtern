@@ -125,6 +125,61 @@ button:disabled { cursor: default; filter: none; transform: none; }
   transition: background-color 9999s ease-out 0s;
 }
 
+.auth-reference-field {
+  position: absolute;
+  z-index: 13;
+  isolation: isolate;
+}
+
+/* Replace only the baked-in label with an unlettered crop of the same paper.
+   The original field frame, envelope/lock icon and remaining texture stay visible. */
+.auth-reference-field::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 20%;
+  width: 31%;
+  height: 60%;
+  background-image: url("/reference/login.png");
+  background-repeat: no-repeat;
+  background-size: 494.871795% 2800%;
+  background-position: 53.246753% 45.185185%;
+  pointer-events: none;
+}
+
+.auth-reference-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 6px 0 2px;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: #4a403a;
+  caret-color: #4a403a;
+  font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: clamp(16px, 5.128205vw, 20.615385px);
+  line-height: 1.2;
+  -webkit-text-fill-color: #4a403a;
+  appearance: none;
+}
+
+.auth-reference-input::placeholder {
+  font-family: "HanyiSentyCrayon", "PingFang SC", sans-serif;
+  font-size: inherit;
+  color: #62605b;
+  -webkit-text-fill-color: #62605b;
+  opacity: 1;
+}
+
+.auth-reference-input:-webkit-autofill {
+  -webkit-text-fill-color: #4a403a;
+  transition: background-color 9999s ease-out 0s;
+}
+
 .reference-fixed-bar {
   position: absolute;
   z-index: 50;
@@ -320,17 +375,18 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .continuation-products b { display: block; min-height: 47px; margin: 9px 2px 16px; font-size: 19px; font-weight: 400; line-height: 1.28; }
 .continuation-products em { color: #ff8075; font: 16px Arial, sans-serif; font-style: normal; }
 
-.market-content { overscroll-behavior-x: none; }
+.market-stage,
+.messages-experience { --reference-height: min(100dvh, 874px); }
+.market-content { overscroll-behavior-x: none; background: url("/assets/shop-bg.asset") center top/100% 100%; }
+.market-content .shop-continuation { background: transparent; }
 .market-header {
   position: relative;
   z-index: 5;
   width: 100%;
-  height: 178px;
+  height: calc(var(--reference-height) * 178 / 844);
   overflow: hidden;
   flex: none;
-  background:
-    linear-gradient(rgba(242,255,252,.78), rgba(248,255,252,.72)),
-    url("/assets/shop-bg.asset") center/cover;
+  background: transparent;
 }
 .market-header::after {
   content: "";
@@ -338,13 +394,18 @@ button:disabled { cursor: default; filter: none; transform: none; }
   z-index: 6;
   left: 5.1282051%;
   right: 4.6153846%;
-  top: 166px;
+  top: calc(var(--reference-height) * 166 / 844);
   height: 1px;
   background: rgba(156,148,138,.55);
 }
-.market-header-search-crop { position: absolute; z-index: 7; inset: 0 0 auto; height: 108px; overflow: hidden; }
+.market-header-search-crop { position: absolute; z-index: 7; inset: 0 0 auto; height: calc(var(--reference-height) * 108 / 844); overflow: hidden; }
 .market-content-snapshot { position: relative; width: 100%; overflow: hidden; }
-.market-content-snapshot-image { position: absolute; left: 0; top: -178px; }
+.market-content-snapshot-recommend { height: calc(var(--reference-height) * 252 / 844); }
+.market-content-snapshot-kits { height: calc(var(--reference-height) * 84 / 844); }
+.market-content-snapshot-image { position: absolute; left: 0; top: calc(var(--reference-height) * -178 / 844); }
+.market-header-search-crop,
+.market-content-snapshot,
+.messages-top-snapshot { mask-image: linear-gradient(#000 calc(100% - 6px), transparent); }
 .market-panels { position: relative; min-height: 100%; overflow: hidden; }
 .market-panel { min-height: 100%; touch-action: pan-y; will-change: transform; }
 .market-panel-active { position: relative; z-index: 2; }
@@ -359,8 +420,8 @@ button:disabled { cursor: default; filter: none; transform: none; }
   z-index: 24;
   left: 5.1282051%;
   right: 2.0512821%;
-  top: 116px;
-  height: 44px;
+  top: calc(var(--reference-height) * 116 / 844);
+  height: calc(var(--reference-height) * 44 / 844);
   overflow: visible;
   background: transparent;
 }
@@ -710,11 +771,11 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .footprints-scroll > section { margin-bottom: 24px; }.footprints-scroll > section > header { display: flex; align-items: end; justify-content: space-between; margin: 0 2px 12px; }.footprints-scroll h2 { margin: 0; font-size: 23px; font-weight: 400; }.footprints-scroll header span { color: #9c948a; font: 12px "PingFang SC",sans-serif; }
 
 .messages-experience { background: linear-gradient(rgba(242,255,252,.94),rgba(255,252,244,.98)),url("/assets/home-bg.asset") center/cover; }
-.messages-content { overscroll-behavior-y: contain; }
-.messages-top-snapshot { position: relative; width: 100%; height: 228px; overflow: hidden; flex: none; }
-.messages-add-friend { position: absolute; z-index: 20; right: 20px; top: 55px; display: grid; width: 36px; height: 36px; padding: 7px; place-items: center; border: 2px solid #acd7ce; border-radius: 13px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 4px rgba(0,0,0,.14),0 2px 5px rgba(0,0,0,.17); }
+.messages-content { overscroll-behavior-y: contain; background: url("/assets/home-bg.asset") center top/100% 100%; }
+.messages-top-snapshot { position: relative; width: 100%; height: calc(var(--reference-height) * 228 / 844); overflow: hidden; flex: none; }
+.messages-add-friend { position: absolute; z-index: 20; right: 20px; top: calc(var(--reference-height) * 55 / 844); display: grid; width: 36px; height: 36px; padding: 7px; place-items: center; border: 2px solid #acd7ce; border-radius: 13px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 4px rgba(0,0,0,.14),0 2px 5px rgba(0,0,0,.17); }
 .messages-add-friend img { display: block; width: 100%; height: 100%; opacity: .72; }
-.messages-main-list { min-height: 760px; padding: 9px 20px 155px; background: linear-gradient(rgba(244,255,251,.93),rgba(255,251,241,.97)),url("/assets/home-bg.asset") center/cover; }
+.messages-main-list { min-height: 760px; padding: 9px 20px 155px; background: transparent; }
 .message-notice-card { position: relative; display: flex; align-items: center; width: 100%; height: 74px; margin-bottom: 12px; padding: 13px; border: 1px solid #e2cec2; border-radius: 15px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset 0 -1px 4px rgba(0,0,0,.15),0 2px 4px rgba(0,0,0,.11); text-align: left; }
 .message-notice-card > i { display: grid; flex: none; width: 48px; height: 48px; margin-right: 16px; place-items: center; border: 2px solid white; border-radius: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.2),inset 0 -2px 4px rgba(0,0,0,.14); font-style: normal; font-size: 18px; }.message-notice-card > i.system { background: #a7dfca; }.message-notice-card > i.activity { background: #ee9998; color: white; }
 .message-notice-card > span { display: grid; gap: 5px; min-width: 0; }.message-notice-card > span b { font-size: 21px; font-weight: 400; }.message-notice-card > span small { overflow: hidden; color: #9c948a; font: 12px "PingFang SC",sans-serif; text-overflow: ellipsis; white-space: nowrap; }.message-notice-card > em { position: absolute; right: 13px; top: 14px; color: #d0c9c0; font: 11px Arial,sans-serif; font-style: normal; }
