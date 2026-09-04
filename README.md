@@ -5,7 +5,8 @@
 ## 在线访问
 
 - 源码仓库：https://github.com/wowochenzi/Pawtern
-- 网站：https://pawtern-wowochenzi.tiffanywowo.chatgpt.site
+- GitHub Pages（作业演示）：https://wowochenzi.github.io/Pawtern/
+- 原演示站点（保留）：https://pawtern-wowochenzi.tiffanywowo.chatgpt.site
 
 本项目是可交互的前端展示原型。预约、个人资料和面料订单保存在当前浏览器的
 `localStorage` 中，不会跨浏览器或设备同步；支付与取件码为演示流程，不会发起真实扣款。
@@ -32,6 +33,19 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## GitHub Pages 部署
+
+推送到 `main` 后，`.github/workflows/pages.yml` 会自动构建并发布到 GitHub Pages。
+仓库的 **Settings → Pages → Source** 使用 **GitHub Actions**。
+
+```bash
+npm run build:github
+npm run preview -- --mode github-pages
+```
+
+GitHub Pages 构建使用 `/Pawtern/` 作为网站路径；普通构建与本地开发仍使用 `/`。
+页面继续使用 Hash 路由，图片、字体和原有视觉设计保持不变。
 
 ## 页面
 

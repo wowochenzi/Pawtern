@@ -152,7 +152,7 @@ function OnboardingExperience({ initialStep }: { initialStep: 1 | 2 | 3 }) {
     }}
   >
     <div className="onboarding-slide-track" style={{ transform: `translate3d(-${step * 100}%,0,0)` }}>
-      {[1, 2, 3].map(index => <section className="onboarding-reference-slide" key={index}><img src={`/reference/onboarding-${index}.png`} alt={`欢迎页 ${index}`} draggable={false} /></section>)}
+      {[1, 2, 3].map(index => <section className="onboarding-reference-slide" key={index}><img src={`./reference/onboarding-${index}.png`} alt={`欢迎页 ${index}`} draggable={false} /></section>)}
     </div>
     <button className="onboarding-next-hotspot" onClick={advance} aria-label={step === 2 ? '开启旅程' : '下一页'} />
   </main>
@@ -218,13 +218,13 @@ function DiyChoiceExperience() {
   return (
     <main className="reference-stage diy-choice-experience" data-route="/home/diy">
       <div className="reference-canvas">
-        <img className="reference-page-image" src="/reference/home-modal.png" alt="" draggable={false} />
+        <img className="reference-page-image" src="./reference/home-modal.png" alt="" draggable={false} />
         <button className="diy-choice-dismiss" type="button" aria-label="关闭 DIY 选择" onClick={() => go('/home')} />
         <button className="diy-choice-button workshop" type="button" disabled={!accepted} aria-describedby="diy-choice-consent" onClick={() => go('/workshops')}>
-          <img src="/reference/home-modal.png" alt="我要去线下工坊 DIY" draggable={false} />
+          <img src="./reference/home-modal.png" alt="我要去线下工坊 DIY" draggable={false} />
         </button>
         <button className="diy-choice-button home" type="button" disabled={!accepted} aria-describedby="diy-choice-consent" onClick={() => go('/shop/kits')}>
-          <img src="/reference/home-modal.png" alt="我要在家自己 DIY" draggable={false} />
+          <img src="./reference/home-modal.png" alt="我要在家自己 DIY" draggable={false} />
         </button>
         <label className={`diy-choice-consent ${accepted ? 'is-accepted' : ''}`} id="diy-choice-consent">
           <input type="checkbox" checked={accepted} onChange={event => setAccepted(event.target.checked)} />
@@ -350,7 +350,7 @@ function RecyclePage({ mode }: { mode: 'pickup' | 'dropoff' }) {
         </section>
         <TextureButton className={`conditional-confirm ${mode}`} disabled={!complete} onClick={confirm}>确认预约</TextureButton>
       </div>
-      <img className="flow-person" src="/assets/recycle-person-crop.png" alt="" />
+      <img className="flow-person" src="./assets/recycle-person-crop.png" alt="" />
       {reviewOpen && <div className="workshop-review-scrim recycle-review-scrim" role="presentation" onClick={() => setReviewOpen(false)}>
         <section className="workshop-review-sheet recycle-review-sheet" role="dialog" aria-modal="true" aria-labelledby="recycle-review-title" onClick={event => event.stopPropagation()}>
           <i className="handle" /><h2 id="recycle-review-title">核对回收预约</h2>
@@ -369,7 +369,7 @@ function WorkshopTop({ stepTitle }: { stepTitle: string }) {
   return (
     <>
       <Header title="DIY线下工坊预约" onBack={() => go('/workshops')} />
-      <div className="workshop-location"><b><img src="/assets/location-pin.png" alt="" />{location.name}</b><small>距您{location.distance}</small></div>
+      <div className="workshop-location"><b><img src="./assets/location-pin.png" alt="" />{location.name}</b><small>距您{location.distance}</small></div>
       <h2 className="visually-hidden">{stepTitle}</h2>
     </>
   )
@@ -404,8 +404,8 @@ function WorkshopProfile() {
           <label className="form-field"><span>体型</span><select value={draft.petSize} onChange={event => update({ petSize: event.target.value })}><option value="">请选择</option><option>超小体</option><option>小型</option><option>中型</option><option>大型</option></select></label>
         </div>
       </CardStack>
-      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/time')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button><button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/diy')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button>
-      <img className="sewing-person" src="/assets/workshop-person-crop.png" alt="" />
+      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/time')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button><button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/diy')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button>
+      <img className="sewing-person" src="./assets/workshop-person-crop.png" alt="" />
     </Screen>
   )
 }
@@ -426,10 +426,10 @@ function WorkshopDiy() {
           <label className="form-field"><span>面料来源</span><select value={draft.fabricSource} onChange={event => update({ fabricSource: event.target.value })}><option value="">请选择</option><option>平台二手面料</option><option>自带宝宝旧衣</option><option>现场面料交换</option></select></label>
         </div>
       </CardStack>
-      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/profile')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button>
-      <button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/time')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button>
+      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/profile')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button>
+      <button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/time')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button>
       <TextureButton className="workshop-confirm" disabled={!ready} onClick={() => ready && setReviewOpen(true)}>确认预约</TextureButton>
-      <img className="sewing-person" src="/assets/workshop-person-crop.png" alt="" />
+      <img className="sewing-person" src="./assets/workshop-person-crop.png" alt="" />
       {reviewOpen && <div className="workshop-review-scrim" role="presentation" onClick={() => setReviewOpen(false)}>
         <section className="workshop-review-sheet" role="dialog" aria-modal="true" aria-labelledby="workshop-review-title" onClick={event => event.stopPropagation()}>
           <i className="handle" />
@@ -481,9 +481,9 @@ function Calendar({ selected, onSelect }: { selected: string; onSelect: (value: 
         return <button type="button" className={`${inMonth && selected === value ? 'selected' : ''} ${inMonth ? '' : 'outside'}`} disabled={!inMonth} onClick={() => value && onSelect(value)} key={`${year}-${month}-${day}-${index}`}>{day}</button>
       })}</div>
       <footer>
-        <button className="calendar-month-arrow previous" type="button" onClick={() => changeMonth(-1)} aria-label="上一个月"><img src="/assets/calendar-arrow-left.svg" alt="" /></button>
+        <button className="calendar-month-arrow previous" type="button" onClick={() => changeMonth(-1)} aria-label="上一个月"><img src="./assets/calendar-arrow-left.svg" alt="" /></button>
         <span aria-live="polite">{monthLabel}</span>
-        <button className="calendar-month-arrow next" type="button" onClick={() => changeMonth(1)} aria-label="下一个月"><img src="/assets/calendar-arrow-right.svg" alt="" /></button>
+        <button className="calendar-month-arrow next" type="button" onClick={() => changeMonth(1)} aria-label="下一个月"><img src="./assets/calendar-arrow-right.svg" alt="" /></button>
       </footer>
     </div>
   )
@@ -500,8 +500,8 @@ function WorkshopTime() {
         <Calendar selected={draft.date} onSelect={date => update({ date })} />
         <label className="time-select">时段 <select value={draft.time} onChange={event => update({ time: event.target.value })}><option value="">请选择时段</option><option>10:00-12:00</option><option>13:00-15:00</option><option>15:30-17:30</option></select></label>
       </CardStack>
-      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/diy')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button><button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/profile')}><img src="/assets/workshop-arrow-right.svg" alt="" /></button>
-      <img className="sewing-person" src="/assets/workshop-person-crop.png" alt="" />
+      <button className="side-arrow left" aria-label="上一步" onClick={() => go('/workshop/diy')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button><button className="side-arrow right" aria-label="下一步" onClick={() => go('/workshop/profile')}><img src="./assets/workshop-arrow-right.svg" alt="" /></button>
+      <img className="sewing-person" src="./assets/workshop-person-crop.png" alt="" />
     </Screen>
   )
 }
@@ -527,14 +527,14 @@ function Workshops() {
           <span aria-hidden="true" />
         </label>
       </div>
-      <span className="city-chip"><img src="/assets/workshop-city-chip.png" alt="杭州市" /></span>
+      <span className="city-chip"><img src="./assets/workshop-city-chip.png" alt="杭州市" /></span>
       <section className="list-sheet">
         <i className="handle" /><h1>工坊列表</h1>
         <div className="workshop-results" aria-live="polite">
           {filteredLocations.map(item => {
             const imageIndex = workshopLocations.findIndex(location => location.id === item.id)
             return <button className={`workshop-item ${selected === item.id ? 'selected' : ''}`} aria-label={`选择${item.name}`} aria-pressed={selected === item.id} key={item.id} onClick={() => choose(item.id)}>
-              <img src={`/assets/workshop-list-${imageIndex + 1}.png`} alt="" />
+              <img src={`./assets/workshop-list-${imageIndex + 1}.png`} alt="" />
             </button>
           })}
           {!filteredLocations.length && <p className="workshop-empty">没有找到相关服务地点<br /><small>请尝试输入商圈、道路或工坊名称</small></p>}
@@ -571,7 +571,7 @@ function PrintSuccessPage({ kind }: { kind: 'workshop' | 'recycle' }) {
           <dl><div><dt>姓名</dt><dd>{name}</dd></div><div><dt>日期</dt><dd>{date}</dd></div><div><dt>时段</dt><dd>{time}</dd></div></dl>
           <footer>Thank you for your booking</footer>
         </section> : <section className="ticket recycle-ticket">
-          <div className="check"><img src="/assets/recycle-success-check.svg" alt="" /></div><h1>预约成功</h1><small>{date.replace(/-/g, '/')}</small>
+          <div className="check"><img src="./assets/recycle-success-check.svg" alt="" /></div><h1>预约成功</h1><small>{date.replace(/-/g, '/')}</small>
           <hr /><div className="pickup-code"><b>取件码</b><strong>0DMQ5Z</strong></div><hr />
           <dl><div><dt>姓名</dt><dd>{name}</dd></div><div><dt>日期</dt><dd>{date}</dd></div><div><dt>时段</dt><dd>{time}</dd></div></dl>
           <footer>Thank you for your booking</footer>
@@ -934,29 +934,29 @@ type RefScreen = {
 }
 
 const referenceScreens: Partial<Record<Route, RefScreen>> = {
-  '/onboarding/1': { image: '/reference/onboarding-1.png' },
-  '/onboarding/2': { image: '/reference/onboarding-2.png' },
-  '/onboarding/3': { image: '/reference/onboarding-3.png' },
-  '/login': { image: '/reference/login.png' },
-  '/register': { image: '/reference/register.png' },
-  '/home': { image: '/reference/home.png', fixedBar: true },
-  '/home/diy': { image: '/reference/home-modal.png' },
-  '/recycle/pickup': { image: '/reference/recycle-pickup.png' },
-  '/recycle/dropoff': { image: '/reference/recycle-dropoff.png' },
-  '/workshops': { image: '/reference/workshops.png' },
-  '/workshop/profile': { image: '/reference/workshop-profile.png' },
-  '/workshop/diy': { image: '/reference/workshop-diy.png' },
-  '/workshop/time': { image: '/reference/workshop-time.png' },
-  '/workshop/success': { image: '/reference/workshop-success.png' },
-  '/fabrics': { image: '/reference/fabrics.png' },
-  '/fabrics/detail': { image: '/reference/fabric-detail.png' },
-  '/shop': { image: '/reference/shop.png', fixedBar: true },
-  '/shop/kits': { image: '/reference/shop-kits.png', fixedBar: true },
-  '/product': { image: '/reference/product.png' },
-  '/messages': { image: '/reference/messages.png', fixedBar: true },
-  '/profile': { image: '/reference/profile.png', fixedBar: true },
-  '/achievements': { image: '/reference/achievements.png' },
-  '/achievements/action': { image: '/reference/achievements-action.png' },
+  '/onboarding/1': { image: './reference/onboarding-1.png' },
+  '/onboarding/2': { image: './reference/onboarding-2.png' },
+  '/onboarding/3': { image: './reference/onboarding-3.png' },
+  '/login': { image: './reference/login.png' },
+  '/register': { image: './reference/register.png' },
+  '/home': { image: './reference/home.png', fixedBar: true },
+  '/home/diy': { image: './reference/home-modal.png' },
+  '/recycle/pickup': { image: './reference/recycle-pickup.png' },
+  '/recycle/dropoff': { image: './reference/recycle-dropoff.png' },
+  '/workshops': { image: './reference/workshops.png' },
+  '/workshop/profile': { image: './reference/workshop-profile.png' },
+  '/workshop/diy': { image: './reference/workshop-diy.png' },
+  '/workshop/time': { image: './reference/workshop-time.png' },
+  '/workshop/success': { image: './reference/workshop-success.png' },
+  '/fabrics': { image: './reference/fabrics.png' },
+  '/fabrics/detail': { image: './reference/fabric-detail.png' },
+  '/shop': { image: './reference/shop.png', fixedBar: true },
+  '/shop/kits': { image: './reference/shop-kits.png', fixedBar: true },
+  '/product': { image: './reference/product.png' },
+  '/messages': { image: './reference/messages.png', fixedBar: true },
+  '/profile': { image: './reference/profile.png', fixedBar: true },
+  '/achievements': { image: './reference/achievements.png' },
+  '/achievements/action': { image: './reference/achievements-action.png' },
 }
 
 function hotspotStyle(x: number, y: number, width: number, height: number) {
@@ -1298,7 +1298,7 @@ function ActivitiesPage() {
       <ExtensionHeader title="全部活动" />
       <div className="extension-scroll">
         <section className="activity-reference-list">
-          <img className="activity-reference-board" src="/reference/activities.png" alt="三个当季活动" />
+          <img className="activity-reference-board" src="./reference/activities.png" alt="三个当季活动" />
           {activityData.map((item, index) => <div className={`activity-list-image activity-list-image-${index + 1}`} key={`image-${item.title}`}>
             <img src={item.image} alt="" />
             <span>{item.status}</span>
@@ -1345,7 +1345,7 @@ function PublishMenu({ onSelectImages }: { onSelectImages: (value: string[]) => 
   }
   return (
     <main className="reference-stage publish-stage">
-      <img className="publish-home" src="/reference/home.png" alt="" />
+      <img className="publish-home" src="./reference/home.png" alt="" />
       <button className="publish-dismiss" aria-label="关闭发布菜单" onClick={() => go('/home')} />
       <section className="publish-sheet">
         <i />
@@ -1951,7 +1951,7 @@ function MarketProductGrid({ tab }: { tab: MarketTab }) {
 }
 
 function MarketPanelBody({ tab, onSelectTab }: { tab: MarketTab; onSelectTab: (tab: MarketTab) => void }) {
-  const snapshot = tab === 'recommend' ? '/reference/shop.png' : '/reference/shop-kits.png'
+  const snapshot = tab === 'recommend' ? './reference/shop.png' : './reference/shop-kits.png'
   const snapshotHeight = tab === 'recommend' ? '252px' : tab === 'kits' ? '84px' : '0px'
   return <>
     {tab === 'recommend' || tab === 'kits' ? <div className="market-content-snapshot" style={{ height: snapshotHeight }}>
@@ -1992,7 +1992,7 @@ function MarketExperience({ initialTab = 'recommend' }: { initialTab?: MarketTab
         <header className="market-header">
           <div className="market-header-search-crop">
             <div className="reference-snapshot-full">
-              <img className="reference-page-image" src="/reference/shop.png" alt="" draggable={false} />
+              <img className="reference-page-image" src="./reference/shop.png" alt="" draggable={false} />
               <Hotspot label="搜索" to="/search" x={20} y={54} width={293} height={40} />
               <Hotspot label="购物车" to="/cart" x={328} y={53} width={44} height={42} />
             </div>
@@ -2190,8 +2190,8 @@ function MessagesExperience() {
       <div className="reference-content messages-content">
         <div className="messages-top-snapshot">
           <div className="reference-snapshot-full">
-            <img className="reference-page-image" src="/reference/messages.png" alt="" draggable={false} />
-            <button className="messages-add-friend" aria-label="添加好友" onClick={() => go('/friends/add')}><img src="/assets/user-round-plus.svg" alt="" /></button>
+            <img className="reference-page-image" src="./reference/messages.png" alt="" draggable={false} />
+            <button className="messages-add-friend" aria-label="添加好友" onClick={() => go('/friends/add')}><img src="./assets/user-round-plus.svg" alt="" /></button>
             <Hotspot label="赞和收藏" to="/messages/likes" x={43} y={127} width={75} height={76} />
             <Hotspot label="新增关注" to="/messages/follows" x={157} y={127} width={75} height={76} />
             <Hotspot label="评论和@" to="/messages/comments" x={274} y={127} width={75} height={76} />
@@ -2244,11 +2244,11 @@ function AddFriendsPage() {
     <ExtensionHeader title="添加好友" back="/messages" />
     <div className="extension-scroll add-friends-scroll">
       <section className="friend-search-section">
-        <label><img src="/assets/search.svg" alt="" /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="搜索昵称或 PAWTERN ID" /></label>
-        <button className="friend-scan-button" aria-label="扫一扫添加好友" onClick={() => setScannerOpen(true)}><img src="/assets/scan-line.svg" alt="" /></button>
+        <label><img src="./assets/search.svg" alt="" /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="搜索昵称或 PAWTERN ID" /></label>
+        <button className="friend-scan-button" aria-label="扫一扫添加好友" onClick={() => setScannerOpen(true)}><img src="./assets/scan-line.svg" alt="" /></button>
       </section>
       <section className="my-friend-qr-card">
-        <header><i>S</i><span><b>Sarah</b><small>PAWTERN ID：680979018</small></span><img src="/assets/qr-code.svg" alt="" /></header>
+        <header><i>S</i><span><b>Sarah</b><small>PAWTERN ID：680979018</small></span><img src="./assets/qr-code.svg" alt="" /></header>
         <div><img src={A.successQr} alt="Sarah 的好友二维码" /></div>
         <p>扫一扫上面的二维码，添加我为好友</p>
       </section>
