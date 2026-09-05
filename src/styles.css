@@ -34,10 +34,11 @@ button:disabled { cursor: default; filter: none; transform: none; }
 }
 
 .reference-stage {
+  --reference-height: min(217.412936vw, 874px);
   position: relative;
   isolation: isolate;
   width: min(100vw, 402px);
-  height: min(100dvh, 874px);
+  height: var(--reference-height);
   overflow: hidden;
   background: #f7fffc;
   box-shadow: 0 12px 55px rgba(66, 83, 75, .2);
@@ -297,7 +298,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .reference-snapshot-full {
   position: relative;
   width: 100%;
-  height: min(100dvh, 874px);
+  height: var(--reference-height);
 }
 
 .reference-stage[data-route="/home"] .reference-snapshot-clip { height: 70%; }
@@ -378,8 +379,6 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .continuation-products b { display: block; min-height: 47px; margin: 9px 2px 16px; font-size: 19px; font-weight: 400; line-height: 1.28; }
 .continuation-products em { color: #ff8075; font: 16px Arial, sans-serif; font-style: normal; }
 
-.market-stage,
-.messages-experience { --reference-height: min(100dvh, 874px); }
 .market-content { overscroll-behavior-x: none; background: url("/assets/shop-bg.asset") center top/100% 100%; }
 .market-content .shop-continuation { background: transparent; }
 .market-header {
@@ -569,7 +568,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .extension-screen {
   position: relative;
   width: min(100vw, 402px);
-  height: min(100dvh, 874px);
+  height: min(217.412936vw, 874px);
   overflow: hidden;
   background:
     linear-gradient(rgba(242,255,252,.96), rgba(255,252,244,.98)),
@@ -812,9 +811,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .phone-screen {
   position: relative;
   width: min(100vw, 390px);
-  min-height: 844px;
-  height: 100dvh;
-  max-height: 900px;
+  height: min(216.410256vw, 844px);
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(242,255,252,.96), rgba(255,252,244,.98)),
