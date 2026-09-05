@@ -888,9 +888,9 @@ function ProductDetailPage() {
           <h1>{product.name}</h1><strong>{product.price}</strong>
           <article><h3>配送服务</h3><p>{product.shipping}</p></article>
           <article><h3>商品描述</h3><p>{product.description}</p></article>
-          <div className="purchase-actions"><TextureButton onClick={() => notify('已加入购物车')}>加入购物车</TextureButton><TextureButton dark onClick={() => notify('已生成购买订单')}>立即购买</TextureButton></div>
         </section>
       </div>
+      <div className="product-fixed-actions"><TextureButton onClick={() => notify('已加入购物车')}>加入购物车</TextureButton><TextureButton dark onClick={() => notify('已生成购买订单')}>立即购买</TextureButton></div>
       {toast && <div className="toast">{toast}</div>}
     </main>
   )
@@ -1624,43 +1624,17 @@ function readStoredProfile(): StoredProfile {
   }
 }
 
-function ProfileGlyph({ kind }: { kind: 'settings' | 'calendar' | 'star' | 'order' | 'pet' | 'achievement' | 'address' }) {
-  if (kind === 'settings') return <svg viewBox="0 0 32 32"><path d="M13.5 4.6h5l.8 3a10 10 0 0 1 2.2 1.3l3-.9 2.5 4.3-2.2 2.2a10 10 0 0 1 0 2.6l2.2 2.2-2.5 4.3-3-.9a10 10 0 0 1-2.2 1.3l-.8 3h-5l-.8-3a10 10 0 0 1-2.2-1.3l-3 .9L5 19.3l2.2-2.2a10 10 0 0 1 0-2.6L5 12.3 7.5 8l3 .9a10 10 0 0 1 2.2-1.3l.8-3Z"/><circle cx="16" cy="15.8" r="4"/></svg>
-  if (kind === 'calendar') return <svg viewBox="0 0 32 32"><rect x="6" y="7.5" width="20" height="19" rx="2.5"/><path d="M10.5 5v5M21.5 5v5M6 12.5h20M10 17h4M18 17h4M10 21h4M18 21h4"/></svg>
-  if (kind === 'star') return <svg viewBox="0 0 32 32"><path d="m16 4 3.5 7.1 7.8 1.1-5.6 5.5 1.3 7.7-7-3.7-7 3.7 1.3-7.7-5.6-5.5 7.8-1.1L16 4Z"/></svg>
-  if (kind === 'order') return <svg viewBox="0 0 40 40"><path d="M14 9h12v5H14z"/><rect x="9" y="12" width="22" height="23" rx="3"/><path d="M14 19h12M14 24h12M14 29h8"/></svg>
-  if (kind === 'pet') return <svg viewBox="0 0 40 40"><circle cx="12" cy="15" r="4"/><circle cx="20" cy="11" r="4"/><circle cx="28" cy="15" r="4"/><path d="M20 17c-6 0-10 5-10 10 0 4 3 6 7 4 2-1 4-1 6 0 4 2 7 0 7-4 0-5-4-10-10-10Z"/></svg>
-  if (kind === 'achievement') return <svg viewBox="0 0 40 40"><path d="M13 7h14v8c0 5-3 8-7 8s-7-3-7-8V7Z"/><path d="M13 10H7v3c0 5 3 8 8 8M27 10h6v3c0 5-3 8-8 8M20 23v6M14 34h12M16 29h8"/></svg>
-  return <svg viewBox="0 0 40 40"><path d="M20 35s11-10 11-19a11 11 0 1 0-22 0c0 9 11 19 11 19Z"/><path d="m14 17 6-5 6 5v7H14v-7ZM18 24v-5h4v5"/></svg>
-}
-
 function ProfileDashboardOverlay() {
   const profile = readStoredProfile()
   return (
     <div className="profile-dashboard-overlay" aria-hidden="true">
-      <span className="profile-settings-visual"><ProfileGlyph kind="settings" /></span>
-      <section className="profile-live-identity">
-        <i style={profile.avatar ? { backgroundImage: `url(${profile.avatar})` } : undefined} />
-        <div>
-          <b>{profile.name}</b>
-          <small>ID: 680979018　▦</small>
-          <span><em>LV.3 环保达人</em><em>积分: 1705</em></span>
-        </div>
-      </section>
-      <section className="profile-live-schedule">
-        <i><ProfileGlyph kind="calendar" /></i>
-        <span><b>我的日程</b><small>查看工坊预约与活动</small></span>
-        <strong>2个待参加</strong><em>›</em>
-      </section>
-      <section className="profile-live-services">
-        <header><i><ProfileGlyph kind="star" /></i><b>我的服务</b></header>
-        <div>
-          <span><i className="profile-service-order"><ProfileGlyph kind="order" /></i><b>我的订单</b></span>
-          <span><i className="profile-service-pet"><ProfileGlyph kind="pet" /></i><b>我的宠物</b></span>
-          <span><i className="profile-service-achievement"><ProfileGlyph kind="achievement" /></i><b>我的成就</b></span>
-          <span><i className="profile-service-address"><ProfileGlyph kind="address" /></i><b>我的地址</b></span>
-        </div>
-      </section>
+      {profile.avatar && <i className="profile-live-avatar" style={{ backgroundImage: `url(${profile.avatar})` }} />}
+      <b className="profile-live-name">{profile.name}</b>
+      <small className="profile-live-id">ID: 680979018　▦</small>
+      <span className="profile-copy-schedule"><b>我的日程</b><small>查看工坊预约与活动</small></span>
+      <strong className="profile-copy-status">7个待参加</strong>
+      <b className="profile-copy-services-title">我的服务</b>
+      <span className="profile-copy-service-labels"><b>我的订单</b><b>我的宠物</b><b>我的成就</b><b>我的地址</b></span>
     </div>
   )
 }

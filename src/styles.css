@@ -1169,7 +1169,7 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0; }.stat-grid article { height: 80px; }.footprint-title { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; }.footprint-title b { padding: 6px 10px; border: 1px solid #99d9cd; border-radius: 10px; background: #fffefa; font-size: 18px; }.footprint-title span { padding: 8px; border-radius: 7px; background: white; box-shadow: 0 1px 3px rgba(0,0,0,.18); }.footprint-title i { margin-left: 12px; color: #bcc0c6; font-style: normal; }.timeline { position: relative; height: 73px; padding: 14px 15px 10px 67px; border: 1px solid #ead894; border-radius: 10px; background: linear-gradient(rgba(255,232,151,.58),rgba(253,225,128,.6)),url("/assets/workshop-yellow.asset") center/cover; box-shadow: inset -4px -4px 6px rgba(0,0,0,.1),0 2px 4px rgba(0,0,0,.16); }.timeline b,.timeline small { display: block; }.timeline b { font-size: 17px; }.timeline small { margin-top: 5px; }.timeline em { position: absolute; right: 15px; top: 15px; color: #a6a6ae; font-style: normal; }.history { display: block; margin: 16px auto; background: transparent; color: #aaa; }.achievement-sheet > .texture-button { position: absolute; left: 14px; right: 14px; bottom: 31px; width: auto; min-height: 64px; font-size: 21px; }
 
 /* Dynamic market product detail */
-.dynamic-product-scroll { padding: 22px 0 36px; background: linear-gradient(rgba(246,255,251,.54),rgba(255,251,240,.9)),url("/assets/shop-bg.asset") center/cover; }
+.dynamic-product-scroll { padding: 22px 0 126px; background: linear-gradient(rgba(246,255,251,.54),rgba(255,251,240,.9)),url("/assets/shop-bg.asset") center/cover; }
 .dynamic-product-hero { position: relative; width: calc(100% - 28px); height: 300px; margin: 0 14px; overflow: hidden; border: 1px solid #dfc9bd; border-radius: 25px; background: #f5f1e8; box-shadow: 0 3px 8px rgba(0,0,0,.16); }
 .dynamic-product-hero img { width: 100%; height: 100%; object-fit: cover; }
 .dynamic-product-hero > span { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 10px; background: rgba(255,254,249,.91); box-shadow: 0 2px 4px rgba(0,0,0,.14); font-size: 15px; }
@@ -1182,7 +1182,8 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .dynamic-product-sheet article { margin-top: 15px; padding: 14px 17px; border: 1px solid #9bd7cb; border-radius: 15px; background: linear-gradient(rgba(216,248,241,.72),rgba(209,242,235,.76)),url("/assets/workshop-mint.asset") center/cover; box-shadow: inset -4px -4px 6px rgba(0,0,0,.08),0 2px 4px rgba(0,0,0,.1); }
 .dynamic-product-sheet article h3 { margin: 0 0 7px; font-size: 18px; font-weight: 400; }
 .dynamic-product-sheet article p { margin: 0; color: #7f847f; font: 13px/1.65 "PingFang SC",sans-serif; }
-.dynamic-product-sheet .purchase-actions { position: sticky; bottom: 0; margin-top: 20px; }
+.product-fixed-actions { position: absolute; z-index: 36; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 19px 20px; background: linear-gradient(rgba(255,251,241,.96),rgba(255,250,239,.99)),url("/assets/auth-paper.asset") center/cover; box-shadow: 0 -4px 10px rgba(0,0,0,.13); }
+.product-fixed-actions .texture-button { min-height: 58px; font-size: 21px; }
 
 /* Fabric story collection: only the board between tabs and footer scrolls */
 .fabric-experience { background: linear-gradient(rgba(242,255,252,.96),rgba(255,252,244,.98)),url("/assets/home-bg.asset") center/cover; }
@@ -1307,36 +1308,18 @@ button:disabled { cursor: default; filter: none; transform: none; }
 @keyframes order-list-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
 /* Profile and settings interaction pages */
-.profile-dashboard-overlay { position: absolute; z-index: 10; inset: 0 0 auto; height: 58.856635%; overflow: hidden; background-color: #effbf7; background-image: linear-gradient(rgba(235,253,248,.88),rgba(247,255,252,.94)),url("/assets/profile-bg.asset"); background-position: center; background-size: cover; pointer-events: none; }
-.profile-settings-visual { position: absolute; right: 29px; top: 56px; display: grid; width: 43px; height: 43px; place-items: center; border: 1px solid #9ebbb5; border-radius: 14px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 3px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.15); color: #79b9aa; font: 24px/1 Arial,sans-serif; }
-.profile-settings-visual svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.profile-live-identity { position: absolute; left: 21px; top: 87px; display: flex; align-items: center; width: 302px; height: 91px; }
-.profile-live-identity > i { flex: none; width: 91px; height: 91px; border: 5px solid white; border-radius: 50%; background: #68e1c6 center/cover; box-shadow: 0 3px 6px rgba(0,0,0,.18); }
-.profile-live-identity > div { display: grid; gap: 5px; min-width: 0; margin-left: 15px; }
-.profile-live-identity b { overflow: hidden; color: #403833; font-size: 23px; font-weight: 400; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
-.profile-live-identity small { color: #8d918d; font: 12px/1.2 "PingFang SC",sans-serif; }
-.profile-live-identity div > span { display: flex; gap: 8px; }
-.profile-live-identity div > span em { min-width: 93px; padding: 4px 8px 3px; border: 1px solid #e5c9c0; border-radius: 7px; background: rgba(255,249,244,.9); color: #ef9087; font-size: 12px; font-style: normal; line-height: 1; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
-.profile-live-identity div > span em:last-child { min-width: 77px; border-color: #badfd8; color: #71c8ba; }
-.profile-live-schedule { position: absolute; left: 19px; top: 201px; display: flex; align-items: center; width: 352px; height: 75px; padding: 9px 14px; border: 1px solid #e0cec1; border-radius: 17px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 3px rgba(0,0,0,.07),0 2px 5px rgba(0,0,0,.14); }
-.profile-live-schedule > i,.profile-live-services header > i { display: grid; flex: none; width: 49px; height: 49px; place-items: center; border: 3px solid white; border-radius: 50%; background: rgba(247,251,243,.84); box-shadow: 0 2px 4px rgba(0,0,0,.13); color: #67d5bb; font: 29px/1 Arial,sans-serif; font-style: normal; }
-.profile-live-schedule > i svg { width: 29px; height: 29px; fill: none; stroke: currentColor; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
-.profile-live-schedule > span { display: grid; gap: 4px; margin-left: 12px; }
-.profile-live-schedule > span b { font-size: 22px; font-weight: 400; line-height: 1; }
-.profile-live-schedule > span small { color: #9b948d; font: 11px/1.2 "PingFang SC",sans-serif; }
-.profile-live-schedule > strong { margin-left: auto; color: #fb8d83; font-size: 17px; font-weight: 400; white-space: nowrap; }
-.profile-live-schedule > em { margin-left: 8px; color: #c7c4bf; font: 29px/1 Arial,sans-serif; font-style: normal; }
-.profile-live-services { position: absolute; left: 19px; top: 299px; width: 352px; height: 187px; padding: 13px 14px 10px; border: 1px solid #dfcdc0; border-radius: 22px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -3px 5px rgba(0,0,0,.07),0 2px 6px rgba(0,0,0,.14); }
-.profile-live-services header { display: flex; align-items: center; height: 49px; }
-.profile-live-services header > i { width: 45px; height: 45px; color: #f0c249; font-size: 29px; }
-.profile-live-services header > i svg { width: 29px; height: 29px; fill: currentColor; stroke: #e0ac2e; stroke-width: 1.1; stroke-linejoin: round; }
-.profile-live-services header > b { margin-left: 13px; font-size: 22px; font-weight: 400; }
-.profile-live-services > div { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; margin-top: 10px; }
-.profile-live-services > div > span { display: grid; justify-items: center; gap: 7px; }
-.profile-live-services > div i { display: grid; width: 66px; height: 66px; place-items: center; border: 1px solid #eadfd2; border-radius: 15px; background: rgba(255,253,246,.9); box-shadow: 0 2px 4px rgba(0,0,0,.12); font-style: normal; }
-.profile-live-services > div i svg { width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.profile-service-order { color: #61c7ab; }.profile-service-pet { color: #eea28e; }.profile-service-pet svg circle,.profile-service-pet svg path { fill: #f5b4a3; }.profile-service-achievement { color: #e7bc46; }.profile-service-address { color: #ef9188; }.profile-service-address svg path:first-child { fill: #ffc2bd; }
-.profile-live-services > div b { font-size: 14px; font-weight: 400; line-height: 1; white-space: nowrap; }
+.profile-dashboard-overlay { position: absolute; z-index: 10; inset: 0 0 auto; height: 58.856635%; overflow: hidden; pointer-events: none; }
+.profile-live-avatar { position: absolute; left: 25px; top: 103px; width: 82px; height: 82px; border: 4px solid white; border-radius: 50%; background-position: center; background-size: cover; box-shadow: 0 3px 6px rgba(0,0,0,.18); }
+.profile-live-name,.profile-live-id,.profile-copy-schedule,.profile-copy-status,.profile-copy-services-title,.profile-copy-service-labels > b { -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); background: rgba(248,248,240,.68); box-shadow: 0 0 4px 3px rgba(248,248,240,.62); }
+.profile-live-name { position: absolute; left: 119px; top: 99px; max-width: 188px; overflow: hidden; color: #403833; font-size: 27px; font-weight: 400; line-height: 32px; text-overflow: ellipsis; white-space: nowrap; }
+.profile-live-id { position: absolute; left: 120px; top: 134px; color: #8d918d; font: 12px/1.25 "PingFang SC",sans-serif; }
+.profile-copy-schedule { position: absolute; left: 87px; top: 222px; display: grid; gap: 3px; }
+.profile-copy-schedule b,.profile-copy-services-title { font-size: 22px; font-weight: 400; line-height: 25px; }
+.profile-copy-schedule small { color: #9b948d; font: 11px/1.25 "PingFang SC",sans-serif; }
+.profile-copy-status { position: absolute; right: 43px; top: 230px; color: #fb8d83; font-size: 16px; font-weight: 400; line-height: 21px; white-space: nowrap; }
+.profile-copy-services-title { position: absolute; left: 88px; top: 331px; }
+.profile-copy-service-labels { position: absolute; left: 35px; right: 35px; top: 454px; display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; }
+.profile-copy-service-labels > b { justify-self: center; padding: 1px 2px; font-size: 14px; font-weight: 400; line-height: 19px; white-space: nowrap; }
 .settings-detail-scroll { padding: 23px 16px 52px; }
 .profile-edit-card,.settings-detail-card { padding: 16px; border: 1px solid #dcc9bc; border-radius: 23px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: 0 3px 7px rgba(0,0,0,.14); }.settings-detail-card + .settings-detail-card { margin-top: 15px; }.settings-detail-card > h2 { margin: 2px 3px 12px; font-size: 20px; font-weight: 400; }
 .profile-avatar-editor { position: relative; display: flex; align-items: center; min-height: 88px; margin-bottom: 12px; padding: 5px 4px 15px; border-bottom: 1px dashed #d8cbc2; cursor: pointer; }.profile-avatar-editor > i { display: grid; flex: none; width: 72px; height: 72px; place-items: center; border: 4px solid white; border-radius: 50%; background: #72edca center/cover; box-shadow: 0 2px 5px rgba(0,0,0,.17); color: white; font: 28px Arial,sans-serif; font-style: normal; }.profile-avatar-editor > span { display: grid; gap: 6px; padding-left: 15px; font-size: 20px; }.profile-avatar-editor small { color: #9c948a; font: 11px "PingFang SC",sans-serif; }.profile-avatar-editor > em { margin-left: auto; color: #91cfc3; font-style: normal; }.profile-avatar-editor input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
