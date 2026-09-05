@@ -1344,15 +1344,20 @@ function ActivitiesPage() {
   return (
     <main className="extension-screen activities-screen">
       <ExtensionHeader title="全部活动" />
-      <div className="extension-scroll">
-        <section className="activity-reference-list">
-          <img className="activity-reference-board" src="./reference/activities.png" alt="三个当季活动" />
-          {activityData.map((item, index) => <div className={`activity-list-image activity-list-image-${index + 1}`} key={`image-${item.title}`}>
-            <img src={item.image} alt="" />
-            <span>{item.status}</span>
-          </div>)}
+      <div className="extension-scroll activities-scroll">
+        <section className="activity-list" aria-label="全部活动列表">
           {activityData.map((item, index) => (
-            <button key={item.title} aria-label={`查看${item.title}`} onClick={() => go(`/activity/${index + 1}` as Route)} />
+            <button className="activity-list-card" type="button" key={item.title} onClick={() => go(`/activity/${index + 1}` as Route)}>
+              <figure>
+                <img src={item.image} alt={item.title} />
+                <span>{item.status}</span>
+              </figure>
+              <span className="activity-list-copy">
+                <strong>{item.title}</strong>
+                <small>{item.summary}</small>
+                <em><i aria-hidden="true">◷</i>{item.date}<b aria-hidden="true">·</b>{item.place}</em>
+              </span>
+            </button>
           ))}
         </section>
         <p className="activity-list-tip">更多环保活动正在筹备中</p>
