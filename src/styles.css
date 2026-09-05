@@ -385,13 +385,15 @@ button:disabled { cursor: default; filter: none; transform: none; }
 .home-continuation .continuation-posts img { height: 148px; border-radius: 21px 21px 0 0; }
 .home-continuation .continuation-posts b { min-height: 49px; font: 14px/1.35 "PingFang SC", sans-serif; }
 
-.shop-continuation { min-height: 690px; padding-top: 12px; background: url("/assets/shop-bg.asset") center/cover; }
+.shop-continuation { min-height: 690px; padding: 12px 20px 160px; background: url("/assets/shop-bg.asset") center/cover; }
 
-.continuation-products button { min-height: 260px; padding: 10px; }
-.continuation-products img { width: 100%; height: 168px; border-radius: 14px; object-fit: cover; }
-.continuation-products span { position: absolute; left: 17px; top: 17px; padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,.88); font-size: 12px; }
-.continuation-products b { display: block; min-height: 47px; margin: 9px 2px 16px; font-size: 19px; font-weight: 400; line-height: 1.28; }
-.continuation-products em { color: #ff8075; font: 16px Arial, sans-serif; font-style: normal; }
+.continuation-products { gap: 20px; }
+.continuation-products button { min-width: 0; min-height: 275px; padding: 10px 10px 12px; border-radius: 22px; }
+.continuation-products img { display: block; width: 100%; height: 150px; border-radius: 19px; object-fit: cover; }
+.continuation-products span { position: absolute; left: 17px; top: 17px; padding: 5px 9px; border-radius: 9px; background: rgba(255,255,255,.92); font-size: 12px; line-height: 1; }
+.continuation-products b { display: block; min-height: 48px; margin: 11px 2px 9px; overflow-wrap: anywhere; font-size: 18px; font-weight: 400; line-height: 1.35; }
+.continuation-products em { color: #ff8075; font: 17px/1 Arial, sans-serif; font-style: normal; }
+.market-product-plus { position: absolute; right: 11px; bottom: 10px; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgba(105,196,180,.7); border-radius: 50%; background: linear-gradient(rgba(108,223,200,.78),rgba(100,205,185,.82)),url("/assets/workshop-mint.asset") center/cover; box-shadow: 0 2px 4px rgba(0,0,0,.18),inset -1px -2px 4px rgba(0,0,0,.16); color: white; font: 23px/1 Arial,sans-serif; font-style: normal; }
 
 .market-content { overscroll-behavior-x: none; background: url("/assets/shop-bg.asset") center top/100% 100%; }
 .market-content .shop-continuation { background: transparent; }
@@ -414,13 +416,25 @@ button:disabled { cursor: default; filter: none; transform: none; }
   height: 1px;
   background: rgba(156,148,138,.55);
 }
-.market-header-search-crop { position: absolute; z-index: 7; inset: 0 0 auto; height: calc(var(--reference-height) * 108 / 844); overflow: hidden; }
-.market-content-snapshot { position: relative; width: 100%; overflow: hidden; }
-.market-content-snapshot-recommend { height: calc(var(--reference-height) * 252 / 844); }
-.market-content-snapshot-kits { height: calc(var(--reference-height) * 84 / 844); }
-.market-content-snapshot-image { position: absolute; left: 0; top: calc(var(--reference-height) * -178 / 844); }
-.market-header-search-crop,
-.market-content-snapshot,
+.market-search-row { position: absolute; z-index: 7; left: 20px; right: 20px; top: calc(var(--reference-height) * 54 / 844); display: grid; grid-template-columns: 1fr 47px; gap: 14px; height: calc(var(--reference-height) * 42 / 844); }
+.market-search-button { position: relative; overflow: hidden; border: 1px solid #9fd8cd; border-radius: 13px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -1px 2px rgba(0,0,0,.11); }
+.market-search-button img { position: absolute; right: 8px; top: 50%; width: 29px; height: 29px; transform: translateY(-50%); object-fit: contain; }
+.market-cart-button { position: relative; width: 47px; height: 47px; margin-top: -1px; padding: 0; overflow: hidden; border-radius: 14px; background: transparent; }
+.market-sprite { display: block; background-image: url("/reference/shop.png"); background-repeat: no-repeat; background-size: 402px 874px; image-rendering: auto; }
+.market-cart-art { position: absolute; inset: 0; width: 47px; height: 47px; background-position: -336px -55px; }
+.market-quick-links { height: calc(var(--reference-height) * 252 / 844); padding: 14px 20px 0; display: grid; grid-template-columns: repeat(4,82px); grid-auto-rows: 119px; column-gap: 9.5px; align-content: start; }
+.market-quick-links > button { display: grid; min-width: 0; align-content: start; justify-items: center; padding: 0; background: transparent; }
+.market-quick-art { width: 82px; height: 83px; border-radius: 18px; }
+.market-quick-links span { display: block; max-width: 88px; margin-top: 6px; color: #4a403a; font-size: 16px; line-height: 22px; white-space: nowrap; }
+.market-quick-kits { background-position: -21px -198px; }
+.market-quick-brands { background-position: -113px -198px; }
+.market-quick-sale { background-position: -206px -198px; }
+.market-quick-fans { background-position: -299px -198px; }
+.market-quick-orders { background-position: -21px -325px; }
+.market-quick-cart { background-position: -113px -325px; }
+.market-quick-footprints { background-position: -206px -325px; }
+.market-fabric-callout { display: flex; align-items: center; justify-content: center; gap: 12px; width: calc(100% - 30px); height: calc(var(--reference-height) * 84 / 844); margin: 0 15px; padding: 0 18px; border: 1px solid #f3b7ad; border-radius: 12px; background: linear-gradient(rgba(245,142,132,.72),rgba(244,157,145,.78)),url("/assets/success-texture-coral.png") center/cover; box-shadow: inset -2px -4px 9px rgba(119,70,57,.18),0 2px 5px rgba(0,0,0,.15); color: white; font-size: 20px; letter-spacing: 1px; }
+.market-fabric-callout span { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 9px; background: rgba(255,255,255,.84); color: #ef8b80; font: 20px/1 Arial,sans-serif; }
 .messages-top-snapshot { mask-image: linear-gradient(#000 calc(100% - 6px), transparent); }
 .market-panels { position: relative; min-height: 100%; overflow: hidden; }
 .market-panel { min-height: 100%; touch-action: pan-y; will-change: transform; }
@@ -1308,18 +1322,39 @@ button:disabled { cursor: default; filter: none; transform: none; }
 @keyframes order-list-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
 /* Profile and settings interaction pages */
-.profile-dashboard-overlay { position: absolute; z-index: 10; inset: 0 0 auto; height: 58.856635%; overflow: hidden; pointer-events: none; }
-.profile-live-avatar { position: absolute; left: 25px; top: 103px; width: 82px; height: 82px; border: 4px solid white; border-radius: 50%; background-position: center; background-size: cover; box-shadow: 0 3px 6px rgba(0,0,0,.18); }
-.profile-live-name,.profile-live-id,.profile-copy-schedule,.profile-copy-status,.profile-copy-services-title,.profile-copy-service-labels > b { -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); background: rgba(248,248,240,.68); box-shadow: 0 0 4px 3px rgba(248,248,240,.62); }
-.profile-live-name { position: absolute; left: 119px; top: 99px; max-width: 188px; overflow: hidden; color: #403833; font-size: 27px; font-weight: 400; line-height: 32px; text-overflow: ellipsis; white-space: nowrap; }
-.profile-live-id { position: absolute; left: 120px; top: 134px; color: #8d918d; font: 12px/1.25 "PingFang SC",sans-serif; }
-.profile-copy-schedule { position: absolute; left: 87px; top: 222px; display: grid; gap: 3px; }
-.profile-copy-schedule b,.profile-copy-services-title { font-size: 22px; font-weight: 400; line-height: 25px; }
-.profile-copy-schedule small { color: #9b948d; font: 11px/1.25 "PingFang SC",sans-serif; }
-.profile-copy-status { position: absolute; right: 43px; top: 230px; color: #fb8d83; font-size: 16px; font-weight: 400; line-height: 21px; white-space: nowrap; }
-.profile-copy-services-title { position: absolute; left: 88px; top: 331px; }
-.profile-copy-service-labels { position: absolute; left: 35px; right: 35px; top: 454px; display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; }
-.profile-copy-service-labels > b { justify-self: center; padding: 1px 2px; font-size: 14px; font-weight: 400; line-height: 19px; white-space: nowrap; }
+.profile-dashboard-native { position: relative; width: 100%; height: calc(var(--reference-height) * 497 / 844); flex: none; overflow: hidden; background: url("/assets/profile-bg.asset") center/cover; }
+.profile-dashboard-native button { background-color: transparent; }
+.profile-sprite { display: block; background-image: url("/reference/profile.png"); background-repeat: no-repeat; background-size: 402px 874px; image-rendering: auto; }
+.profile-settings-button { position: absolute; z-index: 3; right: 28px; top: 57px; width: 44px; height: 44px; padding: 0; border-radius: 14px; overflow: hidden; }
+.profile-settings-art { width: 44px; height: 44px; background-position: -342px -57px; }
+.profile-identity-native { position: absolute; left: 24px; right: 78px; top: 101px; height: 87px; display: flex; align-items: center; }
+.profile-avatar-button { flex: none; width: 84px; height: 84px; padding: 0; border-radius: 50%; }
+.profile-avatar-button > i { display: block; width: 84px; height: 84px; border: 4px solid white; border-radius: 50%; background: #70e4c8 center/cover no-repeat; box-shadow: 0 3px 6px rgba(0,0,0,.2); }
+.profile-identity-copy { display: grid; min-width: 0; align-content: center; justify-items: start; gap: 2px; margin-left: 14px; }
+.profile-user-name { max-width: 205px; overflow: hidden; padding: 0; color: #403833; font-size: 29px; font-weight: 400; line-height: 32px; text-align: left; text-overflow: ellipsis; white-space: nowrap; }
+.profile-identity-copy > small { color: #8e918d; font: 12px/15px "PingFang SC","Microsoft YaHei",sans-serif; }
+.profile-badges { display: flex; gap: 7px; margin-top: 4px; }
+.profile-badges button { min-width: 0; height: 23px; padding: 1px 9px 0; border: 1px solid #edc0b9; border-radius: 7px; background: rgba(255,250,244,.82); color: #f29187; box-shadow: inset -1px -1px 2px rgba(0,0,0,.08); font-size: 12px; line-height: 18px; white-space: nowrap; }
+.profile-badges button + button { border-color: #bce1d8; color: #71cbbb; }
+.profile-schedule-card { position: absolute; left: 19px; right: 19px; top: 208px; height: 78px; display: grid; grid-template-columns: 50px 1fr auto 12px; align-items: center; gap: 8px; padding: 0 14px 0 16px; overflow: hidden; border: 1px solid #ddcabe; border-radius: 20px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: 0 2px 5px rgba(0,0,0,.16),inset -1px -2px 3px rgba(0,0,0,.08); text-align: left; }
+.profile-calendar-art { width: 43px; height: 43px; background-position: -39px -226px; border-radius: 50%; }
+.profile-schedule-card > span { display: grid; gap: 2px; }
+.profile-schedule-card b { font-size: 21px; font-weight: 400; line-height: 24px; }
+.profile-schedule-card small { color: #9b948d; font: 11px/14px "PingFang SC","Microsoft YaHei",sans-serif; }
+.profile-schedule-card strong { color: #f58d82; font-size: 16px; font-weight: 400; white-space: nowrap; }
+.profile-schedule-card em { color: #c8bbae; font: 25px/1 Arial,sans-serif; font-style: normal; }
+.profile-services-card { position: absolute; left: 19px; right: 19px; top: 309px; height: 193px; overflow: hidden; border: 1px solid #ddcabe; border-radius: 27px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: 0 2px 6px rgba(0,0,0,.16),inset -1px -2px 3px rgba(0,0,0,.07); }
+.profile-services-card > header { display: flex; align-items: center; gap: 8px; height: 68px; padding: 12px 18px 5px; }
+.profile-star-art { width: 43px; height: 43px; flex: none; background-position: -40px -331px; border-radius: 50%; }
+.profile-services-card h2 { margin: 0; font-size: 22px; font-weight: 400; line-height: 25px; }
+.profile-services-card nav { display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; padding: 0 14px; }
+.profile-services-card nav button { display: grid; min-width: 0; justify-items: center; align-content: start; padding: 0; }
+.profile-service-art { width: 72px; height: 72px; border-radius: 16px; }
+.profile-service-orders { background-position: -41px -390px; }
+.profile-service-pets { background-position: -123px -390px; }
+.profile-service-achievements { background-position: -205px -390px; }
+.profile-service-addresses { background-position: -287px -390px; }
+.profile-services-card nav span { margin-top: 2px; font-size: 15px; line-height: 19px; white-space: nowrap; }
 .settings-detail-scroll { padding: 23px 16px 52px; }
 .profile-edit-card,.settings-detail-card { padding: 16px; border: 1px solid #dcc9bc; border-radius: 23px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: 0 3px 7px rgba(0,0,0,.14); }.settings-detail-card + .settings-detail-card { margin-top: 15px; }.settings-detail-card > h2 { margin: 2px 3px 12px; font-size: 20px; font-weight: 400; }
 .profile-avatar-editor { position: relative; display: flex; align-items: center; min-height: 88px; margin-bottom: 12px; padding: 5px 4px 15px; border-bottom: 1px dashed #d8cbc2; cursor: pointer; }.profile-avatar-editor > i { display: grid; flex: none; width: 72px; height: 72px; place-items: center; border: 4px solid white; border-radius: 50%; background: #72edca center/cover; box-shadow: 0 2px 5px rgba(0,0,0,.17); color: white; font: 28px Arial,sans-serif; font-style: normal; }.profile-avatar-editor > span { display: grid; gap: 6px; padding-left: 15px; font-size: 20px; }.profile-avatar-editor small { color: #9c948a; font: 11px "PingFang SC",sans-serif; }.profile-avatar-editor > em { margin-left: auto; color: #91cfc3; font-style: normal; }.profile-avatar-editor input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }

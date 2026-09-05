@@ -1624,18 +1624,56 @@ function readStoredProfile(): StoredProfile {
   }
 }
 
-function ProfileDashboardOverlay() {
+function ProfileDashboard() {
   const profile = readStoredProfile()
+  const services: Array<{ label: string; route: Route; icon: string }> = [
+    { label: '我的订单', route: '/orders', icon: 'orders' },
+    { label: '我的宠物', route: '/pets', icon: 'pets' },
+    { label: '我的成就', route: '/achievements', icon: 'achievements' },
+    { label: '我的地址', route: '/addresses', icon: 'addresses' },
+  ]
+
   return (
-    <div className="profile-dashboard-overlay" aria-hidden="true">
-      {profile.avatar && <i className="profile-live-avatar" style={{ backgroundImage: `url(${profile.avatar})` }} />}
-      <b className="profile-live-name">{profile.name}</b>
-      <small className="profile-live-id">ID: 680979018　▦</small>
-      <span className="profile-copy-schedule"><b>我的日程</b><small>查看工坊预约与活动</small></span>
-      <strong className="profile-copy-status">7个待参加</strong>
-      <b className="profile-copy-services-title">我的服务</b>
-      <span className="profile-copy-service-labels"><b>我的订单</b><b>我的宠物</b><b>我的成就</b><b>我的地址</b></span>
-    </div>
+    <section className="profile-dashboard-native" aria-label="我的资料与服务">
+      <button className="profile-settings-button" type="button" aria-label="设置" onClick={() => go('/settings')}>
+        <i className="profile-sprite profile-settings-art" aria-hidden="true" />
+      </button>
+
+      <div className="profile-identity-native">
+        <button className="profile-avatar-button" type="button" aria-label="编辑头像" onClick={() => go('/profile/edit')}>
+          <i style={profile.avatar ? { backgroundImage: `url(${profile.avatar})` } : undefined} />
+        </button>
+        <div className="profile-identity-copy">
+          <button className="profile-user-name" type="button" onClick={() => go('/profile/edit')}>{profile.name}</button>
+          <small>ID: 680979018　▦</small>
+          <div className="profile-badges">
+            <button type="button" onClick={() => go('/profile/level')}>LV.3&nbsp; 环保达人</button>
+            <button type="button" onClick={() => go('/profile/points')}>积分: 1205</button>
+          </div>
+        </div>
+      </div>
+
+      <button className="profile-schedule-card" type="button" onClick={() => go('/schedule')}>
+        <i className="profile-sprite profile-calendar-art" aria-hidden="true" />
+        <span><b>我的日程</b><small>查看工坊预约与活动</small></span>
+        <strong>7个待参加</strong><em aria-hidden="true">›</em>
+      </button>
+
+      <section className="profile-services-card" aria-labelledby="profile-services-title">
+        <header>
+          <i className="profile-sprite profile-star-art" aria-hidden="true" />
+          <h2 id="profile-services-title">我的服务</h2>
+        </header>
+        <nav aria-label="我的服务入口">
+          {services.map(service => (
+            <button key={service.label} type="button" onClick={() => go(service.route)}>
+              <i className={`profile-sprite profile-service-art profile-service-${service.icon}`} aria-hidden="true" />
+              <span>{service.label}</span>
+            </button>
+          ))}
+        </nav>
+      </section>
+    </section>
   )
 }
 
@@ -1970,21 +2008,27 @@ const marketCatalog: Record<MarketTab, Product[]> = {
   outfits: outfitProducts,
 }
 
-function MarketSnapshotHotspots({ tab, onSelectTab }: { tab: MarketTab; onSelectTab: (tab: MarketTab) => void }) {
-  return <>
-    <Hotspot label="搜索" to="/search" x={20} y={54} width={293} height={40} />
-    <Hotspot label="购物车" to="/cart" x={328} y={53} width={44} height={42} />
-    {tab === 'recommend' && <>
-      <Hotspot label="DIY材料包" x={20} y={190} width={82} height={100} onClick={() => onSelectTab('kits')} />
-      <Hotspot label="品牌商店" x={111} y={190} width={82} height={100} onClick={() => onSelectTab('brands')} />
-      <Hotspot label="超级满减" to="/shop/sale" x={202} y={190} width={82} height={100} />
-      <Hotspot label="宠粉清单" to="/shop/fan-list" x={293} y={190} width={82} height={100} />
-      <Hotspot label="我的订单" to="/orders" x={20} y={313} width={82} height={101} />
-      <Hotspot label="购物车" to="/cart" x={111} y={313} width={82} height={101} />
-      <Hotspot label="我的足迹" to="/footprints" x={202} y={313} width={82} height={101} />
-    </>}
-    {tab === 'kits' && <Hotspot label="预约独一无二的面料" to="/fabrics" x={15} y={192} width={360} height={63} />}
-  </>
+function MarketQuickLinks({ onSelectTab }: { onSelectTab: (tab: MarketTab) => void }) {
+  const links: Array<{ label: string; icon: string; onClick: () => void }> = [
+    { label: 'DIY材料包', icon: 'kits', onClick: () => onSelectTab('kits') },
+    { label: '美妙商店', icon: 'brands', onClick: () => onSelectTab('brands') },
+    { label: '超级满减', icon: 'sale', onClick: () => go('/shop/sale') },
+    { label: '宠粉清单', icon: 'fans', onClick: () => go('/shop/fan-list') },
+    { label: '我的订单', icon: 'orders', onClick: () => go('/orders') },
+    { label: '购物车', icon: 'cart', onClick: () => go('/cart') },
+    { label: '我的足迹', icon: 'footprints', onClick: () => go('/footprints') },
+  ]
+
+  return (
+    <section className="market-quick-links" aria-label="市集快捷入口">
+      {links.map(link => (
+        <button key={link.label} type="button" onClick={link.onClick}>
+          <i className={`market-sprite market-quick-art market-quick-${link.icon}`} aria-hidden="true" />
+          <span>{link.label}</span>
+        </button>
+      ))}
+    </section>
+  )
 }
 
 function MarketProductGrid({ tab }: { tab: MarketTab }) {
@@ -1998,6 +2042,7 @@ function MarketProductGrid({ tab }: { tab: MarketTab }) {
             <span>{product.tag}</span>
             <b>{product.name}</b>
             <em>{product.price}</em>
+            <i className="market-product-plus" aria-hidden="true">＋</i>
           </button>
         ))}
       </div>
@@ -2006,14 +2051,9 @@ function MarketProductGrid({ tab }: { tab: MarketTab }) {
 }
 
 function MarketPanelBody({ tab, onSelectTab }: { tab: MarketTab; onSelectTab: (tab: MarketTab) => void }) {
-  const snapshot = tab === 'recommend' ? './reference/shop.png' : './reference/shop-kits.png'
   return <>
-    {tab === 'recommend' || tab === 'kits' ? <div className={`market-content-snapshot market-content-snapshot-${tab}`}>
-      <div className="reference-snapshot-full market-content-snapshot-image">
-        <img className="reference-page-image" src={snapshot} alt="" draggable={false} />
-        <MarketSnapshotHotspots tab={tab} onSelectTab={onSelectTab} />
-      </div>
-    </div> : null}
+    {tab === 'recommend' && <MarketQuickLinks onSelectTab={onSelectTab} />}
+    {tab === 'kits' && <button className="market-fabric-callout" type="button" onClick={() => go('/fabrics')}><span aria-hidden="true">✂</span>购买/预约独一无二的面料</button>}
     <MarketProductGrid tab={tab} />
   </>
 }
@@ -2044,12 +2084,9 @@ function MarketExperience({ initialTab = 'recommend' }: { initialTab?: MarketTab
     <main className="reference-stage market-stage has-fixed-reference-bar" data-route="/shop" data-market-tab={activeTab}>
       <div className="reference-content market-content">
         <header className="market-header">
-          <div className="market-header-search-crop">
-            <div className="reference-snapshot-full">
-              <img className="reference-page-image" src="./reference/shop.png" alt="" draggable={false} />
-              <Hotspot label="搜索" to="/search" x={20} y={54} width={293} height={40} />
-              <Hotspot label="购物车" to="/cart" x={328} y={53} width={44} height={42} />
-            </div>
+          <div className="market-search-row">
+            <button className="market-search-button" type="button" aria-label="搜索" onClick={() => go('/search')}><img src="./assets/search.svg" alt="" /></button>
+            <button className="market-cart-button" type="button" aria-label="购物车" onClick={() => go('/cart')}><i className="market-sprite market-cart-art" aria-hidden="true" /></button>
           </div>
           <nav className="market-tabs-shell" aria-label="市集分类">
             <div
@@ -2502,14 +2539,13 @@ function ReferenceExperience({ route, draftImages, setDraftImages }: {
     <main className={`reference-stage ${screen.fixedBar ? 'has-fixed-reference-bar' : ''}`} data-route={route}>
       <div className="reference-content">
         {screen.fixedBar ? <>
-          <div className="reference-snapshot-clip">
+          {route === '/profile' ? <ProfileDashboard /> : <div className="reference-snapshot-clip">
             <div className="reference-snapshot-full">
               <img className="reference-page-image" src={screen.image} alt="" draggable={false} />
               {route === '/home' && <ActivityCarousel />}
-              {route === '/profile' && <ProfileDashboardOverlay />}
               <RouteHotspots route={route} />
             </div>
-          </div>
+          </div>}
           <ReferenceContinuation route={route} />
         </> : <div className="reference-canvas">
           <img className="reference-page-image" src={screen.image} alt="" draggable={false} />
