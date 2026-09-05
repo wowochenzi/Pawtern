@@ -1307,8 +1307,36 @@ button:disabled { cursor: default; filter: none; transform: none; }
 @keyframes order-list-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
 
 /* Profile and settings interaction pages */
-.profile-identity-override { position: absolute; z-index: 10; left: 5.4%; top: 10.3%; display: flex; align-items: center; width: 69%; height: 91px; padding: 5px 8px; background: transparent; text-align: left; }
-.profile-identity-override > i { flex: none; width: 80px; height: 80px; border: 4px solid white; border-radius: 50%; background-position: center; background-size: cover; box-shadow: 0 3px 6px rgba(0,0,0,.16); }.profile-identity-override > span { display: grid; gap: 7px; min-width: 0; margin-left: 15px; padding: 4px 8px; border-radius: 9px; background: rgba(242,255,252,.9); }.profile-identity-override > i + span { margin-left: 15px; }.profile-identity-override > span:first-child { margin-left: 95px; }.profile-identity-override b { overflow: hidden; font-size: 23px; font-weight: 400; text-overflow: ellipsis; white-space: nowrap; }.profile-identity-override small { overflow: hidden; color: #8f9692; font: 10px/1.35 "PingFang SC",sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+.profile-dashboard-overlay { position: absolute; z-index: 10; inset: 0 0 auto; height: 58.856635%; overflow: hidden; background-color: #effbf7; background-image: linear-gradient(rgba(235,253,248,.88),rgba(247,255,252,.94)),url("/assets/profile-bg.asset"); background-position: center; background-size: cover; pointer-events: none; }
+.profile-settings-visual { position: absolute; right: 29px; top: 56px; display: grid; width: 43px; height: 43px; place-items: center; border: 1px solid #9ebbb5; border-radius: 14px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 3px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.15); color: #79b9aa; font: 24px/1 Arial,sans-serif; }
+.profile-settings-visual svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.profile-live-identity { position: absolute; left: 21px; top: 87px; display: flex; align-items: center; width: 302px; height: 91px; }
+.profile-live-identity > i { flex: none; width: 91px; height: 91px; border: 5px solid white; border-radius: 50%; background: #68e1c6 center/cover; box-shadow: 0 3px 6px rgba(0,0,0,.18); }
+.profile-live-identity > div { display: grid; gap: 5px; min-width: 0; margin-left: 15px; }
+.profile-live-identity b { overflow: hidden; color: #403833; font-size: 23px; font-weight: 400; line-height: 1; text-overflow: ellipsis; white-space: nowrap; }
+.profile-live-identity small { color: #8d918d; font: 12px/1.2 "PingFang SC",sans-serif; }
+.profile-live-identity div > span { display: flex; gap: 8px; }
+.profile-live-identity div > span em { min-width: 93px; padding: 4px 8px 3px; border: 1px solid #e5c9c0; border-radius: 7px; background: rgba(255,249,244,.9); color: #ef9087; font-size: 12px; font-style: normal; line-height: 1; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,.1); }
+.profile-live-identity div > span em:last-child { min-width: 77px; border-color: #badfd8; color: #71c8ba; }
+.profile-live-schedule { position: absolute; left: 19px; top: 201px; display: flex; align-items: center; width: 352px; height: 75px; padding: 9px 14px; border: 1px solid #e0cec1; border-radius: 17px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -2px 3px rgba(0,0,0,.07),0 2px 5px rgba(0,0,0,.14); }
+.profile-live-schedule > i,.profile-live-services header > i { display: grid; flex: none; width: 49px; height: 49px; place-items: center; border: 3px solid white; border-radius: 50%; background: rgba(247,251,243,.84); box-shadow: 0 2px 4px rgba(0,0,0,.13); color: #67d5bb; font: 29px/1 Arial,sans-serif; font-style: normal; }
+.profile-live-schedule > i svg { width: 29px; height: 29px; fill: none; stroke: currentColor; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+.profile-live-schedule > span { display: grid; gap: 4px; margin-left: 12px; }
+.profile-live-schedule > span b { font-size: 22px; font-weight: 400; line-height: 1; }
+.profile-live-schedule > span small { color: #9b948d; font: 11px/1.2 "PingFang SC",sans-serif; }
+.profile-live-schedule > strong { margin-left: auto; color: #fb8d83; font-size: 17px; font-weight: 400; white-space: nowrap; }
+.profile-live-schedule > em { margin-left: 8px; color: #c7c4bf; font: 29px/1 Arial,sans-serif; font-style: normal; }
+.profile-live-services { position: absolute; left: 19px; top: 299px; width: 352px; height: 187px; padding: 13px 14px 10px; border: 1px solid #dfcdc0; border-radius: 22px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: inset -1px -3px 5px rgba(0,0,0,.07),0 2px 6px rgba(0,0,0,.14); }
+.profile-live-services header { display: flex; align-items: center; height: 49px; }
+.profile-live-services header > i { width: 45px; height: 45px; color: #f0c249; font-size: 29px; }
+.profile-live-services header > i svg { width: 29px; height: 29px; fill: currentColor; stroke: #e0ac2e; stroke-width: 1.1; stroke-linejoin: round; }
+.profile-live-services header > b { margin-left: 13px; font-size: 22px; font-weight: 400; }
+.profile-live-services > div { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; margin-top: 10px; }
+.profile-live-services > div > span { display: grid; justify-items: center; gap: 7px; }
+.profile-live-services > div i { display: grid; width: 66px; height: 66px; place-items: center; border: 1px solid #eadfd2; border-radius: 15px; background: rgba(255,253,246,.9); box-shadow: 0 2px 4px rgba(0,0,0,.12); font-style: normal; }
+.profile-live-services > div i svg { width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.profile-service-order { color: #61c7ab; }.profile-service-pet { color: #eea28e; }.profile-service-pet svg circle,.profile-service-pet svg path { fill: #f5b4a3; }.profile-service-achievement { color: #e7bc46; }.profile-service-address { color: #ef9188; }.profile-service-address svg path:first-child { fill: #ffc2bd; }
+.profile-live-services > div b { font-size: 14px; font-weight: 400; line-height: 1; white-space: nowrap; }
 .settings-detail-scroll { padding: 23px 16px 52px; }
 .profile-edit-card,.settings-detail-card { padding: 16px; border: 1px solid #dcc9bc; border-radius: 23px; background: url("/assets/auth-paper.asset") center/cover; box-shadow: 0 3px 7px rgba(0,0,0,.14); }.settings-detail-card + .settings-detail-card { margin-top: 15px; }.settings-detail-card > h2 { margin: 2px 3px 12px; font-size: 20px; font-weight: 400; }
 .profile-avatar-editor { position: relative; display: flex; align-items: center; min-height: 88px; margin-bottom: 12px; padding: 5px 4px 15px; border-bottom: 1px dashed #d8cbc2; cursor: pointer; }.profile-avatar-editor > i { display: grid; flex: none; width: 72px; height: 72px; place-items: center; border: 4px solid white; border-radius: 50%; background: #72edca center/cover; box-shadow: 0 2px 5px rgba(0,0,0,.17); color: white; font: 28px Arial,sans-serif; font-style: normal; }.profile-avatar-editor > span { display: grid; gap: 6px; padding-left: 15px; font-size: 20px; }.profile-avatar-editor small { color: #9c948a; font: 11px "PingFang SC",sans-serif; }.profile-avatar-editor > em { margin-left: auto; color: #91cfc3; font-style: normal; }.profile-avatar-editor input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
