@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent, type ReactNode } from 'react'
 import { A } from './assets'
 
 type Route =
@@ -2521,7 +2521,28 @@ function ReferenceExperience({ route, draftImages, setDraftImages }: {
 function App() {
   const route = useRoute()
   const [draftImages, setDraftImages] = useState<string[]>([])
-  return <div className="app-shell"><ReferenceExperience key={route} route={route} draftImages={draftImages} setDraftImages={setDraftImages} /></div>
+
+  useLayoutEffect(() => {
+    const updateScale = () => {
+      const viewport = window.visualViewport
+      const width = viewport?.width ?? window.innerWidth
+      const height = viewport?.height ?? window.innerHeight
+      const desktopInset = width >= 403 && height >= 875 ? 18 : 0
+      const scale = Math.min(1, (width - desktopInset * 2) / 402, (height - desktopInset * 2) / 874)
+      document.documentElement.style.setProperty('--pawtern-scale', String(Math.max(.1, scale)))
+    }
+
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    window.visualViewport?.addEventListener('resize', updateScale)
+    return () => {
+      window.removeEventListener('resize', updateScale)
+      window.visualViewport?.removeEventListener('resize', updateScale)
+      document.documentElement.style.removeProperty('--pawtern-scale')
+    }
+  }, [])
+
+  return <div className="app-shell"><div className="app-frame"><ReferenceExperience key={route} route={route} draftImages={draftImages} setDraftImages={setDraftImages} /></div></div>
 }
 
 export default App
